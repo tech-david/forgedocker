@@ -6,7 +6,7 @@ services:
 
   #the spring boot project
   forge-spring:
-    build: ./forge-review-service
+    build: ./Portfolio-Review-Service
     container_name: forge-spring
 
     #these are the required enviroment variable for the spring project
