@@ -18,7 +18,7 @@ import com.forge.PortfolioReviewService.models.User;
 @CrossOrigin(origins="http://localhost:4200")
 public class SessionController {
 	
-	@PostMapping(value="/login", produces = "application/json")
+	@PostMapping(value="/login", consumes = "application/json")
 	public @ResponseBody User login(HttpServletRequest req, @RequestBody User U) {
 		
 		HttpSession ses= req.getSession();

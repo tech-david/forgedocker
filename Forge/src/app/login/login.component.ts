@@ -93,7 +93,7 @@ returnUrl: string;
           //console.log("User Login successful");            
           this.authService.loginRequest(this.model[i]).subscribe(
             data => {
-              //console.log(data);
+              console.log(data);
               this.router.navigateByUrl('/user-home');
             }
           );

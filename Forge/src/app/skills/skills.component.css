@@ -1,9 +1,41 @@
+.container{
+  margin: auto;
+  margin-top: 10px;
+  max-width: 800px;
+  border: 5px solid rgba(211, 98, 6, 0.658) ;
+}
+
+.add-button {
+  margin-top:10px;
+  float: right;
+}
+
+.remove-button {
+  margin-top:10px;
+  float: right;
+}
+
+.in {
+  margin-top:5px;
+  display: inline-block;
+}
+
+mat-icon:hover {
+  background-color: rgba(141, 131, 131, 0.692);
+  cursor: pointer;
+}
+
+* {
+  background-color: white;
+}
+
+
 .example-list {
     width: 300px;
     border: solid 1px #ccc;
     min-height: 60px;
     display: block;
-    background: white;
+    background:white;
     border-radius: 4px;
     overflow: hidden;
   }

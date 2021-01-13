@@ -2,35 +2,45 @@
     <div>
         <mat-card-title class="in">Projects</mat-card-title>
         <!-- <input type="button" value="Add project" (click)="addProject()" class="btn btn-light"> -->
-        <mat-icon class="add-button" type="button" value="Add project" (click)="addProject()" aria-hidden="false" aria-label="add button">add</mat-icon>
-        <mat-icon class="add-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon> 
+        <mat-icon class="add-button" type="button" value="Add project" (click)="addProject()" aria-hidden="false"
+            aria-label="add button">add</mat-icon>
+        <mat-icon class="add-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save
+        </mat-icon>
     </div>
-    
-    <div *ngFor='let project of projects, let i = index'>
-        <hr>
-        <div type="project" [attr.name]="project">
-            <mat-card-header >
-                <mat-card-title>Project Name</mat-card-title>
-            </mat-card-header>    
-            <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].name"></textarea>
-            </mat-card-content>   
-    
-            <mat-card-header>
-                <mat-card-title>Role / Responsibilities</mat-card-title>
-            </mat-card-header>    
-            <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].responsibilities"></textarea>
-            </mat-card-content>  
-    
-            <mat-card-header>
-                <mat-card-title>Technologies</mat-card-title>
-            </mat-card-header>    
-            <mat-card-content>
-                <textarea [(ngModel)]="projectComponents[i].technologies"></textarea>
-            </mat-card-content>
-            <!-- <input type="button" value="Delete project" (click)="deleteProject(i)"> -->
-            <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false" aria-label="delete button">delete</mat-icon>
+
+        <div *ngFor='let project of projects'>
+            <hr>
+            <div type="project" [attr.name]="project">
+                <mat-card-header>
+                    <mat-card-title>Project Name</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <textarea [(ngModel)]="project.projectName"></textarea>
+                </mat-card-content>
+
+                <mat-card-header>
+                    <mat-card-title>Description</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <textarea [(ngModel)]="project.description"></textarea>
+                </mat-card-content>
+
+                <mat-card-header>
+                    <mat-card-title>Role / Responsibilities</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <textarea [(ngModel)]="project.projectResponsibilities"></textarea>
+                </mat-card-content>
+
+                <mat-card-header>
+                    <mat-card-title>Technologies</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <textarea [(ngModel)]="project.projectTech"></textarea>
+                </mat-card-content>
+                <!-- <input type="button" value="Delete project" (click)="deleteProject(i)"> -->
+                <mat-icon type="button" value="Delete project" (click)="deleteProject(i)" aria-hidden="false"
+                    aria-label="delete button">delete</mat-icon>
+            </div>
         </div>
-    </div>      
 </mat-card>

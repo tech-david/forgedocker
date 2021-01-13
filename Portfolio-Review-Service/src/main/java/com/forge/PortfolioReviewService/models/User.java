@@ -1,7 +1,6 @@
 package com.forge.PortfolioReviewService.models;
 
-import java.util.Set;
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,9 +49,9 @@ public class User {
 	@Column(name = "is_Admin", nullable = false, columnDefinition="BOOLEAN DEFAULT false")
 	private boolean isAdmin;
 	
-	@JsonManagedReference(value="user_id")
-	@OneToMany(mappedBy = "userId")
-	private Set<Portfolio> portfolios;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "user", targetEntity=Portfolio.class)
+	private List<Portfolio> portfolios;
 
 	@Override
 	public String toString() {

@@ -1,9 +1,9 @@
 <mat-card class="container">
-  <div *ngIf="inputUserInfo !== undefined">
+  <div *ngIf="user !== undefined">
     <div class="row">
       <div class= "col-9">
-        <h1>{{inputUserInfo["firstName"] | uppercase }}</h1>
-        <span><h1>{{inputUserInfo["lastName"] | uppercase }}</h1></span>
+        <h1>{{inputUserInfo["firstName"] | titlecase }}</h1>
+        <span><h1>{{inputUserInfo["lastName"]| titlecase }}</h1></span>
       </div>
       <div class="col-2" style="float: right;">
         <img [src]= "image" alt="userimage" style="border-radius: 50%;"/>    

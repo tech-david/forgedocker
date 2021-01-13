@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Portfolio } from '../models/portfolio';
 import { AdminServiceService } from '../service/admin-service.service';
 import { PotfolioServiceService } from '../service/potfolio-service.service';
 
@@ -9,7 +10,7 @@ import { PotfolioServiceService } from '../service/potfolio-service.service';
   styleUrls: ['./admin-port-view.component.css']
 })
 export class AdminPortViewComponent implements OnInit {
-  portfolio:Object;
+  portfolio: Portfolio;
 
   skills: any = [];
   skillNumber;

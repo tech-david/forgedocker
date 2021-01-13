@@ -12,7 +12,6 @@ export class AuthService {
   constructor(private myHttpClient: HttpClient) { }
 
   loginRequest(User: User): Observable<User> {
-
     return this.myHttpClient.post<User>('http://localhost:8200/session/login', User,
     {withCredentials:true}
     );

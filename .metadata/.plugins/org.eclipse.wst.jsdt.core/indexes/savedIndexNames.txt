@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\David's PC\Desktop\forgedocker\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3838331280.index
+2317156061.index
+3882190959.index
+25908529.index
+1478391335.index

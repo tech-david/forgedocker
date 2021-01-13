@@ -70,7 +70,7 @@ if(validSubmission)
   this.User["firstName"]=this.regForm.controls['firstname'].value;
   this.User["lastName"]=this.regForm.controls['lastname'].value;
   this.User["is_Admin"]=false;
-   
+  
   
 
 
@@ -100,7 +100,7 @@ if(validSubmission)
       firstName:'',
       lastName:'',
       is_Admin:false,
-      portfolio: []  //should be Portfolio object array
+      portfolios: []  //should be Portfolio object array
     }
     //this.regService.getListOfUsers().subscribe(data=>{
      // this.userList=data;

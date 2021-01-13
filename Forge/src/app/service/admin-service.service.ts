@@ -48,7 +48,7 @@ export class AdminServiceService {
   }
 
   updateCriteria(criteria: Criteria) : Observable<any>{
-    console.log(criteria.criteriaValue);
+     console.log(criteria.criteriaName);
     console.log(`${this.updateCriteriaUrl}/${criteria.id}`);
     console.log(criteria);
    return this.http.post<any>(`${this.updateCriteriaUrl}/${criteria.id}`, criteria);

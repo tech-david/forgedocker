@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Criteria } from '../models/criteria';
 import { AdminServiceService } from '../service/admin-service.service';
+import { CriteriaService } from '../service/criteria.service';
 
 @Component({
   selector: 'app-admin-criteria',
@@ -9,19 +10,27 @@ import { AdminServiceService } from '../service/admin-service.service';
 })
 export class AdminCriteriaComponent implements OnInit {
   criteria: Criteria = new Criteria();
-    step = 0;
+  allCriteria: Criteria[];
+  step = 0;
      
-    addCriteria(id: number, criteriaValue: string, criteriaName: string) {
+  addCriteria(id: number, entryAmount: string, requirements: string,criteriaName: string) {
       this.nextStep();
-      console.log(criteriaValue);
+      console.log(entryAmount);
       this.criteria.id=id;
-      this.criteria.criteriaValue=criteriaValue;
+      this.criteria.entryAmount=entryAmount;
       this.criteria.criteriaName=criteriaName;
-      console.log(this.criteria.criteriaValue);
-      this.adminService.updateCriteria(this.criteria).subscribe(data=>{
+      this.criteria.requirements=requirements;
+      
+      this.criteriaService.updateCriteria(this.criteria).subscribe(data=>{
         console.log(data)
         this.criteria=data;
       }, error => console.log(error));
+    }
+
+    getAllCriteria(){
+      this.criteriaService.getAllCriteria().subscribe(data=>{
+        this.allCriteria = data;
+      })
     }
 
     setStep(index: number) {
@@ -36,9 +45,10 @@ export class AdminCriteriaComponent implements OnInit {
       this.step--;
     }
   
-  constructor(private adminService : AdminServiceService, ) { }
+  constructor(private criteriaService : CriteriaService, ) { }
 
   ngOnInit(): void {
+    this.getAllCriteria;
   }
 
 }

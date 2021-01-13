@@ -1,0 +1,17 @@
+
+Š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Âæ³‚øÿÿÿÿH×RMINORZ
+CODE_SMELL
+Š
+java:S1488!"^Immediately return this expression instead of assigning it to the temporary variable "myList".(ŽÜèóHØRMINORZ
+CODE_SMELL
+`
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëÝüÿÿÿÿHÙRMINORZ
+CODE_SMELL
+g	java:S125"<This block of commented-out lines of code should be removed.(Ö‰¥HÚRMAJORZ
+CODE_SMELL
+l	java:S125"<This block of commented-out lines of code should be removed.(Ä¦çÈøÿÿÿÿHÛRMAJORZ
+CODE_SMELL
+q
+java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(ÛªÛwHÜRCRITICALZVULNERABILITY
+g	java:S125'"<This block of commented-out lines of code should be removed.(Â÷îäHÝRMAJORZ
+CODE_SMELL

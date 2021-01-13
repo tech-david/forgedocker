@@ -6,6 +6,6 @@ export class User {
     password: string;
     firstName: string;
     lastName: string;
-    is_Admin: boolean;
-    portfolio: Object; // should be portfolio array but is hotfixed as
+    is_Admin: boolean; 
+    portfolios: Portfolio[]; // should be portfolio array but is hotfixed as
 }

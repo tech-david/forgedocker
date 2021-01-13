@@ -1,36 +1,29 @@
 package com.forge.PortfolioReviewService.controller;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.forge.PortfolioReviewService.models.AboutMe;
-
 import com.forge.PortfolioReviewService.models.Education;
+import com.forge.PortfolioReviewService.models.Portfolio;
 import com.forge.PortfolioReviewService.models.IndustryEquivalency;
+import com.forge.PortfolioReviewService.models.PortfolioItems;
 import com.forge.PortfolioReviewService.models.Project;
-import com.forge.PortfolioReviewService.models.ProjectResponsibilities;
-import com.forge.PortfolioReviewService.models.ProjectTechnologies;
-import com.forge.PortfolioReviewService.models.SkillMatrix;
-import com.forge.PortfolioReviewService.models.SkillMatrixItem;
-
-import com.forge.PortfolioReviewService.repository.AboutMeRepo;
-import com.forge.PortfolioReviewService.repository.EducationRepo;
-import com.forge.PortfolioReviewService.repository.IndustryEquivalencyRepo;
-import com.forge.PortfolioReviewService.repository.ProjectRepo;
-import com.forge.PortfolioReviewService.repository.ProjectResponsibilitiesRepo;
-import com.forge.PortfolioReviewService.repository.ProjectTechnologiesRepo;
-import com.forge.PortfolioReviewService.repository.SkillMatrixItemRepo;
-import com.forge.PortfolioReviewService.repository.SkillMatrixRepo;
+import com.forge.PortfolioReviewService.repository.PortfolioItemsRepo;
+import com.forge.PortfolioReviewService.repository.PortfolioRepo;
+import com.forge.PortfolioReviewService.repository.UserRepo;
 
 import io.swagger.annotations.ApiOperation;
-
 
 @RestController
 @RequestMapping("/update")
@@ -38,146 +31,172 @@ import io.swagger.annotations.ApiOperation;
 public class PortfolioUpdateController {
 
 	@Autowired
-	private AboutMeRepo aboutMeRepo;
+	private PortfolioRepo portfolioRepo;
+
 	@Autowired
-	private EducationRepo educationRepo;
+	private UserRepo userRepo;
+
 	@Autowired
-	private IndustryEquivalencyRepo industryEquivalencyRepo;
-	@Autowired
-	private ProjectRepo projectRepo;
-	@Autowired
-	private ProjectResponsibilitiesRepo projectResponsibilitiesRepo;
-	@Autowired
-	private ProjectTechnologiesRepo projectTechnologiesRepo;
-	@Autowired
-	private SkillMatrixItemRepo skillMatrixItemRepo;
-	@Autowired
-	private SkillMatrixRepo skillMatrixRepo;
+	private PortfolioItemsRepo portfolioItemsRepo; //potfolio4lyfe
 	
+
+
 	
-	@GetMapping("/getaboutMe")
-	@ApiOperation(value="Getting the About Me",
-	  			  notes = "Retrieving the about me section")
-	public AboutMe getUpdateAboutMe(@RequestParam int id) {
-		return aboutMeRepo.findById(id);
-	}
+	//GET
 	
-	@PutMapping("/aboutMe")
-	@ApiOperation(value="Updating the About Me",
-				  notes = "Updating the about me section")
-	public String updateAboutMe(@RequestBody AboutMe aboutMe) {
-		aboutMeRepo.save(aboutMe);
+	// utility method for testing persistence
+	@GetMapping("/getAllPortfolioItems")
+	@ApiOperation(value = "Getting a specific portfolio", notes = "Retrieving a specific portfolio from a user to review")
+	public List<PortfolioItems> getAllPortfolioItems() {
+
+
+
+			return portfolioItemsRepo.findAll();
+
+		}
+		
+		@GetMapping("/getPortfolioItemsByPortfolioId/{pid}")
+		@ApiOperation(value="Getting a specific portfolio",
+		  			  notes = "Retrieving a specific portfolio from a user to review")
+		public Optional<PortfolioItems> getAllPortfolioItemsByPortfolio(@PathVariable(value = "pid")int id) {
+			
+			System.out.println(portfolioItemsRepo.findByItemId(id));
+					
+			return portfolioItemsRepo.findById(id);
+		}
+		
+		@GetMapping(value="/getaboutMe/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
+		@ApiOperation(value="Getting the About Me",
+		  			  notes = "Retrieving the about me section")
+		public AboutMe getUpdateAboutMe(@PathVariable(value="id") int id) {
+			
+			return portfolioItemsRepo.findByItemId(id);
+			
+		}
+		
+		
+		
+		@GetMapping("/getPortfolioItemsById/{id}")
+		@ApiOperation(value="Getting all portfolio items by id",
+		  notes = "Retrieving a all portfolio items by id from a user to review")
+		public List<PortfolioItems> getAllPortfolioItemsById(@PathVariable(value="id") int id) {
+			
+			
+			return portfolioItemsRepo.findAll();
+
+		}
+
+		@GetMapping(value = "/getIndustryItems/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+		@ApiOperation(value = "Getting the Industry Equivalency", notes = "Retrieving the IndustryEquivalency section")
+		public IndustryEquivalency[] getUpdateIndustryEquivalency(@PathVariable(value = "id") int id) {
+			IndustryEquivalency[] ie = portfolioItemsRepo.findByIndustryItemId(id);
+			for(IndustryEquivalency x : ie) {
+				System.out.println(x);
+			}
+			return portfolioItemsRepo.findByIndustryItemId(id);
+
+		}
+		
+		@GetMapping(value = "/getProjectItems/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+		@ApiOperation(value = "Getting the Project", notes = "Retrieving the portfolio section section")
+		public Project[] getUpdateProjectItems(@PathVariable(value = "id") int id) {
+			Project[] ie = portfolioItemsRepo.findByProjectItemId(id);
+			for(Project x : ie) {
+				System.out.println(x);
+			}
+			//return portfolioItemsRepo.findByProjectItemId(id);
+			return ie;
+
+
+		}
+
+	
+	//POSTS
+	
+
+		@PostMapping("/createEducationItem/{id}")
+		  @ApiOperation(value="Adds new Portfolio Education Item",
+		                 notes ="Adds a new portfolioItem to a specific portfolio")
+			public PortfolioItems createEducationItem(@PathVariable(value = "id") int id, @RequestBody Education education) {
+				System.out.println("Create Education");
+				System.out.println(education);
+				education.setPortfolio(portfolioRepo.getOne(id));
+				PortfolioItems portItem = education;
+				return portfolioItemsRepo.save(portItem);
+			}
+
+		
+		@PostMapping("/createPortfolioItems/{id}")
+//		@ApiOperation(value="Adds new Portfolio Items",
+//		  			 notes ="Adds a new portfolioItem to a specific portfolio")
+		public PortfolioItems createPortfolioItems(@PathVariable(value = "id") int id,
+				@RequestBody PortfolioItems portfolioItem) {
+			portfolioItem.setPortfolio(portfolioRepo.findById(id));
+
+			return portfolioItemsRepo.save(portfolioItem);
+
+		}
+		
+		@PostMapping("/updateIndustryItem/{pid}")
+		@ApiOperation(value = "Adds new Portfolio Industry Item", 
+		notes = "Adds a new portfolioItem to a specific portfolio")
+		public void updateIndustryItem(@PathVariable(value = "pid") int id, @RequestBody IndustryEquivalency[] industry) {
+			for(IndustryEquivalency x : industry) {
+				x.setPortfolio(portfolioRepo.findById(id));
+				portfolioItemsRepo.save(x);
+				System.out.println(x);
+			}
+		}
+		
+		@PostMapping("/updateProjectItem/{id}")
+		@ApiOperation(value = "Adds new Portfolio Project Item", notes = "Adds a new portfolioItem to a specific portfolio")
+		public void updateProjectItem(@PathVariable(value = "id") int id, @RequestBody Project[] project) {
+			System.out.println("Create project");
+			System.out.println(project);
+			for(Project x : project) {
+				x.setPortfolio(portfolioRepo.findById(id));
+				portfolioItemsRepo.save(x);
+				System.out.println(x);
+			}
+		}
+
+	
+	//PUTS
+	
+		// needs testing to determine whether portfolio info is necessary
+		// uniform method for updating any
+		// must pass in portfolio Id
+		@PutMapping("/updatePortfolioItems/{pid}")
+		@ApiOperation(value = "Updating the Project Technology Section", notes = "Updating the project technology section")
+		public String updatePortfolioItems(@PathVariable(value = "pid") int id,
+				@RequestBody PortfolioItems portfolioItems) {
+			portfolioItems.setPortfolio(portfolioRepo.findById(id));
+			portfolioItemsRepo.save(portfolioItems);
+			System.out.println(portfolioItems);
+			return "Success!";
+		}
+		
+		
+
+		
+		@PutMapping(value = "/updateAboutMe/{pid}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public void updateAboutMe(@PathVariable(value = "pid") int id, @RequestBody AboutMe aboutMe) {
+			aboutMe.setPortfolio(portfolioRepo.findById(id));
+			portfolioItemsRepo.save(aboutMe);
+		}
+		
+	
+
+	
+	//DELETE
+
+	@DeleteMapping("/deletePortfolioItem/{id}")
+	public String deleteIndustryEquivalency(@PathVariable(value = "id") int id,
+			@RequestBody PortfolioItems portfolioItem) {
+		portfolioItemsRepo.delete(portfolioItem);
 		return "Success!";
 	}
-	
-	@GetMapping("/geteducation")
-	@ApiOperation(value="Getting the Education",
-	  			  notes = "Retrieving the education section")
-	public Education getEducation(@RequestParam int id) {
-		return educationRepo.findById(id);
-	}
-	
-	@PutMapping("/education")
-	@ApiOperation(value="Updating the Education section",
-	  			  notes = "Updating the education section")
-	public String updateEducation(@RequestBody Education education) {
-		educationRepo.save(education);
-		return "Success!";
-	}
-	
-	@GetMapping("/getindustryEquivalency")
-	@ApiOperation(value="Getting the Industry Equivalency Items",
-	  			  notes = "Retrieving the industry equivalency section")
-	public IndustryEquivalency getIndustryEquivalency(@RequestParam int id) {
-		return industryEquivalencyRepo.findById(id);
-	}
-	
-	@PutMapping("/industryEquivalency")
-	@ApiOperation(value="Updating the Industry Equivalency section",
-	  			  notes = "Updating the industry equivalency section")
-	public String updateIndustryEquivalency(@RequestBody IndustryEquivalency industryEquivalency) {
-		industryEquivalencyRepo.save(industryEquivalency);
-		return "Success!";
-	}
-	
-	@DeleteMapping("/deleteIndustryEquivalency")
-	public String deleteIndustryEquivalency(@RequestBody IndustryEquivalency industryEquivalency) {
-		industryEquivalencyRepo.delete(industryEquivalency);
-		return "Success!";
-	}
-	
-	@GetMapping("/getProject")
-	@ApiOperation(value="Getting the Project",
-	  			  notes = "Retrieving the project section")
-	public Project getProject(@RequestParam int id) {
-		return projectRepo.findById(id);
-	}
-	
-	@PutMapping("/updateproject")
-	@ApiOperation(value="Updating the Project Section",
-	  			  notes = "Updating the project section")
-	public String updateProject(@RequestBody Project project) {
-		projectRepo.save(project);
-		return "Success!";
-	}
-	
-	@GetMapping("/getprojectresponsibilities")
-	@ApiOperation(value="Getting the Project Responsibilities",
-	  			  notes = "Retrieving the project responsibilities section")
-	public ProjectResponsibilities getProjectResponsibilities(@RequestParam int id) {
-		return projectResponsibilitiesRepo.findById(id);
-	}
-	
-	@PutMapping("/projectResponsibilites")
-	@ApiOperation(value="Updating the Project Responsibilities section",
-	  			  notes = "Updating the project responsibilities section")
-	public String updateProjectResponsibilities(@RequestBody ProjectResponsibilities projectResponsibilities) {
-		projectResponsibilitiesRepo.save(projectResponsibilities);
-		return "Success!";
-	}
-	
-	@GetMapping("/getprojectTechnologies")
-	@ApiOperation(value="Getting the Project Technologies",
-	  			  notes = "Retrieving the project technologies section")
-	public ProjectTechnologies getProjectTechnologies(@RequestParam int id) {
-		return projectTechnologiesRepo.findById(id);
-	}
-	
-	@PutMapping("/projectTechnologies")
-	@ApiOperation(value="Updating the Project Technology Section",
-	  			  notes = "Updating the project technology section")
-	public String updateProjectTechnologies(@RequestBody ProjectTechnologies projectTechnologies) {
-		projectTechnologiesRepo.save(projectTechnologies);
-		return "Success!";
-	}
-	
-	@GetMapping("/getSkillMatrixItem")
-	@ApiOperation(value="Getting the Skills Matrix Item",
-	  			  notes = "Retrieving the skills matrix item section")
-	public SkillMatrixItem getSkillMatrixItem(@RequestParam int id) {
-		return skillMatrixItemRepo.findById(id);
-	}
-	
-	@PutMapping("/skillMatrixItem")
-	@ApiOperation(value="Updating the Skill Matrix item section",
-	  			  notes = "Updating the skill matrix item section")
-	public String updateSkillMatrixItem(@RequestBody SkillMatrixItem skillMatrixItem) {
-		skillMatrixItemRepo.save(skillMatrixItem);
-		return "Success!";
-	}
-	
-	@GetMapping("/getskillMatrix")
-	@ApiOperation(value="Getting the Skill Matrix",
-	  			  notes = "Retrieving the skill matrix section")
-	public SkillMatrix getSkillMatrix(@RequestParam int id) {
-		return skillMatrixRepo.findById(id);
-	}
-	
-	@PutMapping("/skillMatrix")
-	@ApiOperation(value="Updating the Skill Matrix section",
-	  			  notes = "Updating the skill matrix section")
-	public String updateSkillMatrix(@RequestBody SkillMatrix skillMatrix) {
-		skillMatrixRepo.save(skillMatrix);
-		return "Success!";
-	}
+
+
+
 }

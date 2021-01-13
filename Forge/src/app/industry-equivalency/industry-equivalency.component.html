@@ -7,15 +7,15 @@
     <mat-icon class="save-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon>
   </div>
   <div>
-    <input class="skill" [(ngModel)]="skill" placeholder="Skill">
-    <input type='number' class="experience" [(ngModel)]="experience" placeholder="Experience (in Months)">
+    <input class="skill" [(ngModel)]="technology" placeholder="Skill">
+    <input type='number' class="experience" [(ngModel)]="months" placeholder="Experience (in Months)">
   </div>
   <div class="chart-wrapper">
       <canvas baseChart height="20" width="50"
       [datasets]="barChartData"
       [labels]="barChartLabels"
       [options]="barChartOptions"
-      [plugins]="barChartPlugins"
+      [plugins]="barChartPlugins" 
       [legend]="barChartLegend"
       [chartType]="barChartType">
     </canvas>
