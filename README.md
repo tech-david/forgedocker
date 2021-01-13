@@ -1,2 +1,3 @@
-# forge-review-service
-spring server for portfolio business logic
+# forge-frontend
+Angular frontend for portfolio generation tool
+This is where doucmentation will go

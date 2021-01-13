@@ -1,12 +1,15 @@
 ## Startup
-### Install Spring Tool Suite (STS)
-- Download STS from https://spring.io/tools.
-- Install STS.
+### Install VS Code, Node.js, and NPM
+- Download VS Code from https://code.visualstudio.com/download.
+- Install VS Code
+- Download Node.js and NPM at  https://nodejs.org/en/download/.
+- Install Node.js and NPM.
 ### Set up the repository
 - Clone the forge-review-service from https://github.com/revaturelabs/forge-review-service.git.
-### Open the application
-- Open the repository's root folder as a workspace with STS.
+### Set up the application
+- Open a terminal window and run `npm install -g @angular/cli`.
 ### Run the application
-- Right-click on the root project folder in the project explorer in STS, and click "Run As", then choose "Spring Boot Application".
-### Open the front end
-- Follow the steps at https://github.com/revaturelabs/forge-frontend/blob/documentation/STARTUP.md.
+- Ensure the back end is running using the instructions at https://github.com/revaturelabs/forge-review-service/blob/documentation/STARTUP.md.
+- Open VS Code and open the root repository folder.
+- Open a terminal from the menu.
+- Run `ng serve -o`.
