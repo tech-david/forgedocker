@@ -1,0 +1,31 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg" [containerInside]="false" class="a">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand">Revature</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+  
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle type="button" class="navbar-brand nav-link dropdown-toggle waves-light">
+            <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" href="/admin-home">Home</a>
+            <a class="dropdown-item waves-light" href="/admin-criteria">Set Requirements</a>
+            <a class="dropdown-item waves-light" href="#">Log out</a>
+          </div>
+        </li>
+  
+      </ul>
+      <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+
+<router-outlet></router-outlet>

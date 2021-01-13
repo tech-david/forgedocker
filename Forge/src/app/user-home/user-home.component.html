@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<br>
+
+  <!-- <div class="card">
+    <h5 class="card-header">Portfolio</h5>
+    <div class="card-body">
+      <h5 class="card-title">Good Afternoon</h5>
+        <p class="card-text">Here you can see all the portfolios you have worked on</p>
+      <a href="/portfolio" class="btn btn-login">Create a portfolio</a>
+    </div>
+  </div> -->
+
+  <div class="container">
+    <div class="background">
+      <h1>Portfolios</h1>
+      <div class="create-btn">
+        <a (click)="onSubmit()" class="btn btn-login">Create a portfolio</a>
+      </div>
+        <table class="table">
+          <thead>
+            <tr class="row">
+              <th class="col-md-3">Portfolio ID</th>
+  
+              <th class="col-md-3">Status</th>
+              <th class="col-md-3">Action</th>
+            </tr>
+          </thead>
+          <tbody class="p-3 mb-2 bg-light text-dark" >
+            <tr class="row" *ngFor="let portfolio of portfolios">
+              <td class="col-md-3">{{portfolio.id}}</td>
+              
+              <td class="col-md-3">{{portfolio.status}}</td>
+              <td class="col-md-3 text-right">
+              <button type="button" class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" routerLink="/portfolio/{{portfolio['id']}}">View</button>
+              <button type="button" class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" >PDF</button>
+            </td>
+            </tr>
+          </tbody>
+        </table>

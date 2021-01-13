@@ -1,0 +1,88 @@
+<!-- <div class="card">
+    <h5 class="card-header">Registration</h5>
+    <div class="card-body">
+        <h5 class="card-title">Please Enter Your Information</h5>
+
+    <div id="formContent">
+
+        
+ 
+      
+      <form [formGroup]="regForm" class="wrapper fadeInDown">
+    
+        
+            <input type="text" id="defaultRegisterFormEmail" class="fadeIn second" formControlName="email" placeholder="">        
+        
+            <p>{{emailError}}</p>
+        
+            <input type="password" id="defaultRegisterFormPassword" class="fadeIn third"  formControlName="password" placeholder="Password">
+       
+        
+            <p>{{passwordError}}</p>
+
+            <input type="firstname" id="defaultRegisterFormFirstName" class="fadeIn third"  formControlName="firstname" placeholder="First Name">
+
+            <p></p>
+
+            <input type="lastname" id="defaultRegisterFormLastName" class="fadeIn third"  formControlName="lastname" placeholder="Last Name">
+         
+            <p></p>
+         
+           
+            
+            <input type="button" id="registerButton" (click)="packageAndShip()" routerLink='/login' class="fadeIn fifth" value="Register">    
+    
+        </form>
+
+    </div>
+
+</div>
+</div> -->
+
+<body>
+    <div id="login">
+        <h3 class="text-center text-white pt-5">Login form</h3>
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post" [formGroup]="regForm">
+                            <img class="image-logo" src="/assets/img/revlogo.png" alt=""> 
+                            <h3 class="text-center rev-color">Registration</h3>
+                            <div class="form-group">
+                                <label for="username" class="rev-color">Email:</label><br>
+                                <input type="text" id="defaultRegisterFormEmail" class="form-control" formControlName="email" placeholder="">
+                                <p>{{emailError}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="rev-color">Password:</label><br>
+                                <input type="password" id="defaultRegisterFormPassword" class="form-control"  formControlName="password" placeholder="Password">
+                                <p>{{passwordError}}</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstname" class="rev-color">Firstname:</label><br>
+                                <input type="firstname" id="defaultRegisterFormFirstName" class="form-control"  formControlName="firstname" placeholder="First Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastname" class="rev-color">Lastname:</label><br>
+                                <input type="lastname" id="defaultRegisterFormLastName" class="form-control"  formControlName="lastname" placeholder="Last Name">
+                            </div>
+
+                              <div class="row">
+                                <div class="col-12 align-button">
+                                  <div class="form-group">
+                                    <input type="button" id="registerButton" (click)="packageAndShip()" routerLink='/login' class="btn btn-login" value="Register">   
+                                  </div>
+                                </div>
+                              </div>                            
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </body>
+
+

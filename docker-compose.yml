@@ -1,0 +1,37 @@
+#Current app version
+version: '3.3'
+
+#The services we are trying to containerize
+services:
+
+  #the spring boot project
+  forge-spring:
+    build: ./Portfolio-Review-Service
+    container_name: forge-spring
+
+    #these are the required enviroment variable for the spring project
+    environment: 
+      - DB_URL=jdbc:h2:testdb:mem
+      - DB_USERNAME=sa
+      - DB_PASSWORD=password
+      - SMTP_HOST=smtp.mailtrap.io
+      - SMTP_PORT=2525
+      - MAIL_USERNAME=9195adabe8cd38
+      - MAIL_PASSWORD=938b45b0385774
+
+    #The port that spring listens to for angular requests it must match the port in the Dockerfile
+    ports: 
+      - 8200:8200
+
+  #the angular project
+  forge:
+    build: ./Forge
+    container_name: forge
+
+    #The port that the angular project is served on and must match in nginx.conf and default.conf
+    ports:
+      - 4200:80
+
+    #this links the spring project and the angular project so the containers can communicate
+    links: 
+     - forge-spring

@@ -1,0 +1,23 @@
+<mat-card class="container">
+  <div>
+    <mat-card-title class="in">Industry Equivalency</mat-card-title>
+    <mat-icon class="subtract-button" type="button" value="Subtract skill" (click)="subtractLabel()" aria-hidden="false" aria-label="subtract button">remove</mat-icon>
+    <mat-icon class="add-button" type="button" value="Add skill" (click)="addLabel()" aria-hidden="false" aria-label="add button">add</mat-icon>
+
+    <mat-icon class="save-button" type="button" (click)="save()" aria-hidden="false" aria-label="save button">save</mat-icon>
+  </div>
+  <div>
+    <input class="skill" [(ngModel)]="skill" placeholder="Skill">
+    <input type='number' class="experience" [(ngModel)]="experience" placeholder="Experience (in Months)">
+  </div>
+  <div class="chart-wrapper">
+      <canvas baseChart height="20" width="50"
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+</mat-card>

@@ -1,0 +1,23 @@
+<app-navbar-admin></app-navbar-admin>
+<div *ngIf="portfolio != undefined">
+    <div *ngIf="portfolio['status'] == 'Pending'" class="form-group">
+   <textarea class="form-control" [(ngModel)]="feedbackInfo" placeholder="Feedback Here...." name="textform"></textarea>
+   <button class="btn btn-success" (click)='approveOrDeny("Approved")'>Approve</button>
+   <button class="btn btn-danger" (click)='approveOrDeny("Denied")'>Deny</button>
+  </div>
+<app-admin-user-info [belongsTo]="portfolio['belongsTo']"></app-admin-user-info>
+<app-admin-about-me [inputAboutMe] = "portfolio['aboutMe']"></app-admin-about-me>
+<app-admin-education [inputEducation] = "portfolio['education']"></app-admin-education>
+<app-admin-industry-equivalnecy [inputIndustryEquivalency]="portfolio['industryEquivalency']"></app-admin-industry-equivalnecy>
+<div class="container">
+    <div>
+        <mat-card-title class="in">Skills</mat-card-title>
+        <!-- <mat-icon class="remove-button" type="button" value="Remove project" (click)="removeSkill()" aria-hidden="false" aria-label="remove button">remove</mat-icon> -->
+        <!-- <mat-icon class="add-button" type="button" value="Add project" (click)="addSkill()" aria-hidden="false" aria-label="add button">add</mat-icon> -->
+    </div>
+    <div class="skillMatrix" *ngFor="let item of skills, let i=index">
+        <app-admin-skills [skillNumber]="i"></app-admin-skills>
+    </div>
+</div>
+<app-admin-projects [inputProject]="portfolio['projects']"></app-admin-projects>
+</div>

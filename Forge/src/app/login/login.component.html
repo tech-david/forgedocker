@@ -1,0 +1,65 @@
+<!-- <div class="card">
+  <h5 class="card-header">Login</h5>
+  <div class="card-body">
+    <h5 class="card-title">Please Enter Your Email and Password</h5>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="email">
+        <p></p>
+        
+        <input type="password" id="password" class="fadeIn third" formControlName="password" placeholder="password">
+      <p></p>
+      
+
+        <input type="submit" id="loginButton" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <div class="col">
+        <p>{{loginError}}</p>
+    </div>
+    
+    <div id="formFooter">
+      <a class="underlineHover" routerLink='/registration' >Register</a>
+    </div>
+      
+  </div>
+</div> -->
+
+ <body>
+  <div id="login">
+      <h3 class="text-center text-white pt-5">Login form</h3>
+      <div class="container">
+          <div id="login-row" class="row justify-content-center align-items-center">
+              <div id="login-column" class="col-md-6">
+                  <div id="login-box" class="col-md-12">
+                      <form id="login-form" class="form" action="" method="post" [formGroup]="loginForm" (ngSubmit)="login()">
+                              <img class="image-logo" src="/assets/img/revlogo.png" alt="">   
+                          <div class="form-group">
+                              <label for="username" class="rev-color">Username:</label><br>
+                              <input type="text" id="login" class="form-control" formControlName="email" placeholder="email">
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="rev-color">Password:</label><br>
+                              <input type="password" id="password" class="form-control" formControlName="password" placeholder="password">
+                              
+                            </div>
+                            <div class="row">
+                              <div class="col-12 align-button">
+                                <div class="form-group">
+                                  <input type="submit" id="loginButton" class="btn btn-login" value="Log In">
+                                </div>
+                                <div class="form-group">
+                                  <a class="text-right" routerLink='/registration'> Register</a>
+                                </div>
+                              </div>
+                            </div> 
+                            
+                        </form>
+                        <div class="col">
+                          <p>{{loginError}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>

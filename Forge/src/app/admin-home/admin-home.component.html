@@ -1,0 +1,46 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container">
+    <div class="background">
+      <h1>Portfolios</h1>
+        <table class="table">
+          <thead>
+            <tr class="row">
+              <th class="col-md-3">Portfolio ID</th>
+              <th class="col-md-4">Name</th>
+              <th class="col-md-4">Status</th>
+              <th class="col-md-1"></th>
+            </tr>
+          </thead>
+          <tbody class="p-3 mb-2 bg-light text-dark">
+            <tr class="row" *ngFor="let portfolio of portfolios">
+              <td class="col-md-3">{{portfolio.id}}</td>
+              <td class="col-md-4">{{getUserName(portfolio.belongsTo)}}</td>
+              <td class="col-md-4">{{portfolio.status}}</td>
+              <td class="col-md-1 text-right">
+              <button type="button" routerLink='../viewPortfolio/{{portfolio.id}}' class="btn btn-secondary"  id="viewButton" data-toggle="modal" data-target="#staticBackdrop" (click)='viewPortfolio(portfolio)' >View</button>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+   
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg"> scrollable
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Portfolio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-admin-port-view></app-admin-port-view>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>   -->
+  <!-- End of Modal -->
+    </div>
+  </div>
